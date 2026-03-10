@@ -1,0 +1,14 @@
+make object "APB2101":"Room" {
+
+    //Minimal example, visit the documentation for more information on the grammar
+    //https://github.com/karpfenproject/karpfen-dsl-tools/blob/main/guides/kmodel_grammar_guide.md
+
+    prop("room_number") -> "APB 2101"
+
+    has("light") -> make object "light":"Lightbulb" {
+
+        prop("is_on") -> "false" 
+        prop("timer") -> "0"
+    }
+
+}   

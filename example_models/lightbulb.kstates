@@ -1,0 +1,47 @@
+STATEMACHINE ATTACHED TO "Lightbulb" {
+
+    //Minimal example. View documentation to get more information about the full grammar:
+    //https://github.com/karpfenproject/karpfen-dsl-tools/blob/main/guides/kstates_grammar_guide.md
+
+    STATES {
+        INITIAL STATE "light_off" {
+            ENTRY {
+                SET("is_on", "false")
+                SET("timer", "0")
+            }
+        }
+        STATE "movement_detected" {
+            ENTRY {
+                SET("is_on", "true")
+                SET("timer", "3" )
+            }
+        }
+        STATE "light_on" {
+            ENTRY {
+                SET("timer",  EVAL { return $(timer) - 1 } )
+            }
+        }
+    }
+
+    TRANSITIONS { 
+
+        TRANSITION "light_off" -> "movement_detected" {
+            CONDITION {
+                EVENT("public", "movement detected")
+            }
+        }
+
+        TRANSITION "movement_detected" -> "light_on" { }
+
+        TRANSITION "light_on" -> "light_off" {
+            CONDITION {
+                EVAL { return $(timer) <= 0.0 }
+            }
+        }
+
+        TRANSITION "light_on" -> "light_on" { }
+    }
+
+    //We need no MACRO block here because the usecase is very simple.
+
+}

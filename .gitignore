@@ -1,0 +1,3 @@
+*.class
+*.tasty
+__pycache__/

@@ -1,0 +1,12 @@
+//Minimal example. Visit the documentation for an overview of the metamodeling grammar:
+//https://github.com/karpfenproject/karpfen-dsl-tools/blob/main/guides/kmeta_grammar_guide.md
+
+type "Lightbulb" "An automatic timed lightbulb" {
+    prop("is_on", "boolean")
+    prop("timer", "number")
+}
+
+type "Room" "A room with light" {
+    prop("room_number", "string")
+    has("light", "Lightbulb")
+}

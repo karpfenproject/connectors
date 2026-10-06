@@ -13,7 +13,8 @@ STATEMACHINE ATTACHED TO "Lightbulb" {
         STATE "movement_detected" {
             ENTRY {
                 SET("is_on", "true")
-                SET("timer", "3" )
+                //The triggering event is in scope here, so its payload (EVENTS.kmeta) is readable
+                SET("timer", EVAL { return $(event->duration) } )
             }
         }
         STATE "light_on" {

@@ -1,0 +1,7 @@
+//Event payload definitions. Registered via PUT /setEventDefinitions (optional, only needed for
+//events that carry a payload). Each type name is also an event name: an event called
+//"movement detected" is parsed against the "movement detected" type below.
+
+type "movement detected" "Movement was detected. Carries how long the light stays on." {
+    prop("duration", "number")
+}
